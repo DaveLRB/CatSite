@@ -1,0 +1,173 @@
+.inp {
+  position: relative;
+  max-width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  margin-top: 1em;
+}
+
+.inpDis {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  margin-top: 1em;
+}
+
+.label {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  transform-origin: 0 0;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  width: 100%;
+}
+
+.labelDis {
+  position: absolute;
+  top: 20px;
+  left: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  transform-origin: 0 0;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  width: 100%;
+}
+
+.focus-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.focus-bgDis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: 0;
+  font-family: inherit;
+  padding: 16px 12px 0 12px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 400;
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 0.15s ease;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover {
+  background: rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"]:not(:placeholder-shown) + .label,
+input[type="email"]:not(:placeholder-shown) + .label,
+input[type="number"]:not(:placeholder-shown) + .label {
+  color: rgba(0, 0, 0, 0.5);
+  transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+input[type="text"]:not(:placeholder-shown) + .labelDis,
+input[type="email"]:not(:placeholder-shown) + .labelDis,
+input[type="number"]:not(:placeholder-shown) + .labelDis {
+  color: rgba(255, 240, 220, 0.725);
+  transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
+  box-shadow: inset 0 -2px 0 rgba(255, 240, 220, 0.725);
+}
+
+input[type="text"]:focus + .label,
+input[type="email"]:focus + .label,
+input[type="number"]:focus + .label {
+  color: rgba(255, 240, 220, 0.725);
+  transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+input[type="text"]:focus + .labelDis,
+input[type="email"]:focus + .labelDis,
+input[type="number"]:focus + .labelDis {
+  color: rgba(255, 240, 220, 0.725);
+  transform: translate3d(0, -12px, 0) scale(0.75);
+}
+
+input[type="text"]:focus + .label + .focus-bg,
+input[type="email"]:focus + .label + .focus-bg,
+input[type="number"]:focus + .label + .focus-bg {
+  transform: scaleX(1);
+  transition: all 0.1s ease;
+}
+
+input[type="text"]:focus + .labelDis + .focus-bgDis,
+input[type="email"]:focus + .labelDis + .focus-bgDis,
+input[type="number"]:focus + .labelDis + .focus-bgDis {
+  transform: scaleX(1);
+  transition: all 0.1s ease;
+}
+
+input[type="text"]:disabled,
+input[type="email"]:disabled,
+input[type="number"]:disabled {
+  color: rgba(255, 240, 220, 0.725);
+}
+
+.radio {
+  display: flex;
+  font-size: 0.6em;
+  padding: 0.5em;
+  column-gap: 0.5em;
+  color: rgba(255, 240, 220);
+}
+
+.adoptChoice {
+  color: #2f2f2f9d;
+  font-size: 0.6em;
+  padding-top: 0.5em;
+  padding-left: 0.2em;
+  column-gap: 1em;
+}
+
+.minimal {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
