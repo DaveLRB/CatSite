@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { NavbarLayout } from "../../components/Navbar/Navbar";
-import { useSelector } from 'react-redux';
-import { getCatById } from '../../store/cats/selectors';
-import bundleCats from '../../assets/bundlecats.png';
+import { useSelector } from "react-redux";
+import { getCatById } from "../../store/cats/selectors";
+import bundleCats from "../../assets/bundlecats.png";
 import {
   FormStyle,
   FormContainer,
@@ -24,10 +24,11 @@ import {
   Image,
 } from "./styled";
 import "./styledForm.css";
+import emailjs from "emailjs-com";
 
 export const AdoptFormPage = () => {
   const { id } = useParams();
-  const cat = useSelector(state => getCatById(state, id)) || {};
+  const cat = useSelector((state) => getCatById(state, id)) || {};
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -41,9 +42,31 @@ export const AdoptFormPage = () => {
   const [adoptReason, setAdoptReason] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  const serviceID = "service_rnbc5xq";
+  const templateID = "template_4kozghz";
+  const userID = "_xgg3FXeLDQ9JRb3H";
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted");
+
+    const emailData = {
+      from_name: "The Catsie",
+      to_name: name,
+      to_email: email,
+      subject: `Adoption of the beautiful ${cat.name}`,
+      message: `Congratulations on adopting ${cat.name}! you are a wonderful human being!`,
+    };
+
+    emailjs.send(serviceID, templateID, emailData, userID).then(
+      (result) => {
+        
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+
     setShowModal(true);
     setName("");
     setEmail("");
@@ -55,9 +78,9 @@ export const AdoptFormPage = () => {
     setAdditionalInfo("");
     setAdoptReason("");
 
-   /*  setTimeout(() => {
+    /*  setTimeout(() => {
       navigate("/home");
-    }, 5000); */
+    }, 10000); */
   };
 
   const handleReset = (e) => {
@@ -80,11 +103,11 @@ export const AdoptFormPage = () => {
 
   const onClose = () => {
     setShowModal(false);
-  }
+  };
   useEffect(() => {
     if (showModal) {
       setShowModal(true);
-     /*  setTimeout(() => {
+      /*  setTimeout(() => {
         setShowModal(false);
       }, 10000); */
     }
@@ -144,7 +167,12 @@ export const AdoptFormPage = () => {
                     id="inp"
                     placeholder="&nbsp;"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^[a-zA-Z]*$/.test(val)) {
+                        setName(val);
+                      }
+                    }}
                     required
                   />
                   <span className="label">Name</span>
@@ -153,7 +181,7 @@ export const AdoptFormPage = () => {
 
                 <label htmlFor="inp" className="inp">
                   <input
-                    type="email"
+                    type="text"
                     id="inp"
                     placeholder="&nbsp;"
                     value={email}
@@ -170,7 +198,12 @@ export const AdoptFormPage = () => {
                     id="inp"
                     placeholder="&nbsp;"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^[0-9]{0,14}$/.test(val)) {
+                        setPhone(val);
+                      }
+                    }}
                     required
                   />
                   <span className="label">Phone Number</span>
@@ -230,11 +263,16 @@ export const AdoptFormPage = () => {
 
                 <label htmlFor="inp" className="inp">
                   <input
-                    type="number"
+                    type="text"
                     id="inp"
                     placeholder="&nbsp;"
                     value={familyMembers}
-                    onChange={(e) => setFamilyMembers(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^[0-9]{0,2}$/.test(val)) {
+                        setFamilyMembers(val);
+                      }
+                    }}
                     required
                   />
                   <span className="label">Number of Family Members</span>
@@ -262,7 +300,12 @@ export const AdoptFormPage = () => {
                     id="inp"
                     placeholder="&nbsp;"
                     value={additionalInfo}
-                    onChange={(e) => setAdditionalInfo(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^.{0,400}$/.test(val)) {
+                        setAdditionalInfo(val);
+                      }
+                    }}
                   />
                   <span className="label">More Info</span>
                   <span className="focus-bg"></span>
@@ -270,10 +313,10 @@ export const AdoptFormPage = () => {
               </RightContainer>
             </MainContainer>
             <ButtonContainer>
-              <Buttons  onClick={handleBackClick}>
+              <Buttons onClick={handleBackClick}>
                 <SpanButtons className="spanBtn"> Go &#x2190;</SpanButtons>
               </Buttons>
-              <Buttons  type="reset">
+              <Buttons type="reset">
                 <SpanButtons className="spanBtn">&#x21BA;</SpanButtons>
               </Buttons>
               <Buttons type="submit">
@@ -284,13 +327,15 @@ export const AdoptFormPage = () => {
           {showModal && (
             <Modal>
               <ModalContent>
-              <CloseButton onClick={onClose}>X</CloseButton>
+                <CloseButton onClick={onClose}>X</CloseButton>
                 <MessageLarge>Thank you for your submission!</MessageLarge>
                 <MessageLarge>We will get back to you soon!</MessageLarge>
                 <MessageLarge>You are a wonderful human being!</MessageLarge>
-                <Image src={bundleCats}/>
+                <Image src={bundleCats} />
                 <MessageMedium>See ya!</MessageMedium>
-                <MessageSmall>You will be redirected in a few seconds!</MessageSmall>
+                <MessageSmall>
+                  You will be redirected in a few seconds!
+                </MessageSmall>
               </ModalContent>
             </Modal>
           )}
