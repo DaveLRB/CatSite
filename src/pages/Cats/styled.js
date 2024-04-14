@@ -78,8 +78,7 @@ export const ButtonStyle = styled.button`
   font-size: 1em;
   color: black;
 
-  ${({ isCurrentPage }) =>
-    isCurrentPage &&
+  ${props => props.currentPage && 
     `
     background-color: rgba(255, 255, 224, 0.5);
     border: 2px solid rgba(255, 255, 224, 0.5);

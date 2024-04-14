@@ -10,8 +10,13 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('./assets/list.json')
-      .then(response => response.json())
+    fetch('/assets/list.json') 
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         dispatch(setCatInfo(data));
       })

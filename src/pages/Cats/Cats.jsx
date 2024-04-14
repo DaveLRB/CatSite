@@ -100,7 +100,7 @@ export const CatsPage = () => {
                 (_, i) => (
                   <StyledLI key={i}>
                     <ButtonStyle
-                      isCurrentPage={currentPage === i + 1}
+                      currentPage={currentPage === i + 1}
                       onClick={() => paginate(i + 1)}
                     >
                       {i + 1}

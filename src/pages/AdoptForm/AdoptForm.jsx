@@ -59,8 +59,8 @@ export const AdoptFormPage = () => {
 
     emailjs.send(serviceID, templateID, emailData, userID).then(
       (result) => {
-        
         console.log(result.text);
+        
       },
       (error) => {
         console.log(error.text);
@@ -78,9 +78,9 @@ export const AdoptFormPage = () => {
     setAdditionalInfo("");
     setAdoptReason("");
 
-    /*  setTimeout(() => {
+    setTimeout(() => {
       navigate("/home");
-    }, 10000); */
+    }, 10000); 
   };
 
   const handleReset = (e) => {
@@ -107,9 +107,9 @@ export const AdoptFormPage = () => {
   useEffect(() => {
     if (showModal) {
       setShowModal(true);
-      /*  setTimeout(() => {
+       setTimeout(() => {
         setShowModal(false);
-      }, 10000); */
+      }, 30000); 
     }
   }, [showModal]);
 

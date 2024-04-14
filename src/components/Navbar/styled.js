@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledLink = styled(Link)`
   display: flex; 
@@ -11,9 +11,8 @@ export const StyledLink = styled(Link)`
   &:hover {
     color: #40312C;
   }
-  ${(props) =>
-    props.activated &&
-    css`
+  ${props => props.activated &&
+    `
       color: #40312C;
       background-color: #D9C2A7;
       border-radius: 1.5em;
