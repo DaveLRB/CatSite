@@ -155,8 +155,8 @@ export const Buttons = styled.button`
   border: 2px solid #fff;
   color: rgba(0, 0, 0, 0.5);
   font-size: 2.5em;
-  padding: 0.5em;
-  width: 150px;
+  padding: 0.3em;
+  width: 110px;
   transition: all 0.5s;
   cursor: pointer;
   position: relative;
@@ -179,14 +179,17 @@ export const SpanButtons = styled.span`
 
 export const ButtonContainer = styled.button`
   padding-top: 2em;
+  padding-left: 2em;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent;
-  column-gap: 1em;
+  column-gap: 1.7em;
   border: none;
   @media (max-width: 480px) {
-    column-gap: 0.5em;
+    column-gap: 0.7em;
+    padding-top: 1em;
+    padding-left: 0.325em;
   }
 `;
 

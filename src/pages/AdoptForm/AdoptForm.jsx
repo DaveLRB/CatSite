@@ -60,7 +60,6 @@ export const AdoptFormPage = () => {
     emailjs.send(serviceID, templateID, emailData, userID).then(
       (result) => {
         console.log(result.text);
-        
       },
       (error) => {
         console.log(error.text);
@@ -80,7 +79,7 @@ export const AdoptFormPage = () => {
 
     setTimeout(() => {
       navigate("/home");
-    }, 10000); 
+    }, 10000);
   };
 
   const handleReset = (e) => {
@@ -107,9 +106,9 @@ export const AdoptFormPage = () => {
   useEffect(() => {
     if (showModal) {
       setShowModal(true);
-       setTimeout(() => {
+      setTimeout(() => {
         setShowModal(false);
-      }, 30000); 
+      }, 30000);
     }
   }, [showModal]);
 
@@ -120,6 +119,12 @@ export const AdoptFormPage = () => {
       </header>
       <main>
         <Title>Are you adopting the beautiful {cat.name}?</Title>
+        <ButtonContainer>
+        <Buttons onClick={handleBackClick}>
+          <SpanButtons> Go &#x2190;</SpanButtons>
+        </Buttons>
+        </ButtonContainer>
+        
         <FormContainer>
           <FormStyle onSubmit={handleSubmit} onReset={handleReset}>
             <SubTitle>Adoption Form</SubTitle>
@@ -313,14 +318,11 @@ export const AdoptFormPage = () => {
               </RightContainer>
             </MainContainer>
             <ButtonContainer>
-              <Buttons onClick={handleBackClick}>
-                <SpanButtons className="spanBtn"> Go &#x2190;</SpanButtons>
-              </Buttons>
               <Buttons type="reset">
-                <SpanButtons className="spanBtn">&#x21BA;</SpanButtons>
+                <SpanButtons>&#x21BA;</SpanButtons>
               </Buttons>
               <Buttons type="submit">
-                <SpanButtons className="spanBtn">&#8594;</SpanButtons>
+                <SpanButtons>&#8594;</SpanButtons>
               </Buttons>
             </ButtonContainer>
           </FormStyle>
